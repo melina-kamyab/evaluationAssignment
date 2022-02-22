@@ -12,12 +12,12 @@ Create a new folder
 2. Run `https://github.com/melina-kamyab/evaluationAssignment.git`
 3. Run `npm install` to install node modules
 
-# unit tests command:
+## unit tests command:
 
 - npm test -- --coverage
 - npm run test
 
-# to start project, run:
+## to start project, run:
 
 - npm start
 

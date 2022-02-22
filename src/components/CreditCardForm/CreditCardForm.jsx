@@ -39,6 +39,22 @@ const CreditCardForm = () => {
     setFocus('');
   };
 
+  // const removeSpecial = (e) => {
+  //   // let invalidChars = ['-', '+',"e", "E",' ', '.'];
+  //   // if (invalidChars.includes(e.key)) {
+  //   //   e.preventDefault();
+  //   // }
+  //   const {id} = e.target;
+  //   let ele = '';
+  //   ele = document.getElementById(id);
+  //   //if user enters any invalid characters it gets replaced
+  //   ele.value = ele.value.replace(
+  //     /[A-Za-z}"`~_=.\->\]|<?+*/,;\[:{\\!@#\/'$%^&*()]/g,
+  //     ''
+  //   );
+  //   setNumber({number: `${ele.value}`});
+  // };
+
   React.useEffect(() => {
     setExpiry(month.concat(year));
   }, [year, month]);
@@ -118,7 +134,8 @@ const CreditCardForm = () => {
               data-testid="month-id"
               onChange={handleMonth}
               value={month}
-              required>
+              required
+            >
               <option value=" ">Month</option>
               {monthsArr.map((month) => {
                 return (
@@ -133,7 +150,8 @@ const CreditCardForm = () => {
               name="expiry-year"
               data-testid="year-id"
               onChange={handleYear}
-              value={year} >
+              value={year}
+            >
               <option value=" ">Year</option>
               {yearsArr.map((year) => {
                 return (
