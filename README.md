@@ -53,6 +53,7 @@ _Below you'll find a brief summary of the naming conventions for this project_
 
 ```
 
-- Apart from the credit card assignment you can also find two additional files inside components/utils. The two files in this folder answer the additional questions that I received from the company.
+Apart from the credit card assignment you can also find two additional files inside components/utils. 
+The two files in this folder answer the additional questions that I received from the company.
 
 ```
