@@ -6,18 +6,12 @@ export function addSpace(e) {
 }
 
 export function removeSpecial(e) {
-  let regex =   /[A-Za-z}"`~_=.\->\]|<?+*/,;\[:{\\!@#\/'$%^&*()]/g
-  let keyPress = e.key
-  let regexKeypress = regex.test(keyPress)
-
-  if(regexKeypress === true){
-    e.preventDefault();
-  }
-
-   // let invalidChars = ['- ', '+',"e", "E",' ', '.'];
-  // if (invalidChars.includes(keyPress)) {
-  //   e.preventDefault();
-  // }
+  const {value} = e.target;
+  const removedChar = value.replace(
+    /[A-Za-z}"`~_=.\->\]|<?+*/,;\[:{\\!@#\/'$%^&*()]/g,
+    ''
+  );
+  return removedChar;
 }
 
 export function removeDigits(e) {

@@ -15,10 +15,15 @@ const CreditCardForm = () => {
   const [focus, setFocus] = useState('');
 
   const handleCardNumber = (e) => {
-    const input = e.target.value;
-    //const maskedNumber = input.replace(/.(?=\d{3})/g, "#")
-    setNumber(input);
+    const manipulatedInput = removeSpecial(e);
+    setNumber(manipulatedInput);
   };
+
+  const handleCvc = (e) => {
+    const manipulatedInput = removeSpecial(e);
+    setCvc(manipulatedInput);
+  };
+
   const handleName = (e) => {
     setName(e.target.value);
   };
@@ -38,22 +43,6 @@ const CreditCardForm = () => {
     setCvc('');
     setFocus('');
   };
-
-  // const removeSpecial = (e) => {
-  //   // let invalidChars = ['-', '+',"e", "E",' ', '.'];
-  //   // if (invalidChars.includes(e.key)) {
-  //   //   e.preventDefault();
-  //   // }
-  //   const {id} = e.target;
-  //   let ele = '';
-  //   ele = document.getElementById(id);
-  //   //if user enters any invalid characters it gets replaced
-  //   ele.value = ele.value.replace(
-  //     /[A-Za-z}"`~_=.\->\]|<?+*/,;\[:{\\!@#\/'$%^&*()]/g,
-  //     ''
-  //   );
-  //   setNumber({number: `${ele.value}`});
-  // };
 
   React.useEffect(() => {
     setExpiry(month.concat(year));
@@ -105,6 +94,7 @@ const CreditCardForm = () => {
               type="tel"
               name="number"
               className="form-control"
+              value={number}
               id="cardNumber"
               required
               placeholder="Card Number"
@@ -112,13 +102,13 @@ const CreditCardForm = () => {
               maxLength="19"
               onChange={handleCardNumber}
               onFocus={(e) => setFocus(e.target.name)}
-              onKeyDown={removeSpecial}
               onKeyPress={addSpace}
             />
             <label htmlFor="name">Card Holder</label>
             <input
               type="text"
               name="name"
+              value={name}
               className="form-control"
               required
               placeholder="Name"
@@ -165,16 +155,15 @@ const CreditCardForm = () => {
             <input
               type="tel"
               name="cvc"
+              id="cvc"
+              value={cvc}
               data-testid="cvc-id"
               placeholder="CVC"
               className="form-control"
               required
               maxLength="3"
-              onChange={(e) => {
-                setCvc(e.target.value);
-              }}
+              onChange={handleCvc}
               onFocus={(e) => setFocus(e.target.name)}
-              onKeyDown={removeSpecial}
             />
             <button
               className="btn btn-dark btn-lg btn-block"
