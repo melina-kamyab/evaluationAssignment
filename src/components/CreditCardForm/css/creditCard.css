@@ -1,0 +1,211 @@
+/** ISSUERS **/
+/** Images **/
+.rccs {
+  margin: 0px auto;
+
+  perspective: 1000px;
+  z-index: 5;
+  position: relative;
+  flex-wrap: wrap;
+  max-width: 430px;
+}
+.rccs__card {
+  height: 270px;
+  margin: auto;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.4s linear;
+  max-width: 430px;
+  flex-wrap: wrap;
+}
+
+.rccs__card--front,
+.rccs__card--back {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background: linear-gradient(25deg, #939393, #717171);
+  border-radius: 14.5px;
+  color: #fff;
+
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  transform-style: preserve-3d;
+  width: 100%;
+
+  box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
+}
+
+.rccs__card--front {
+  z-index: 20;
+  background-image: url(../../../assets/images/crown.jpg);
+}
+.rccs__card--back {
+  transform: rotateY(180deg);
+  background-image: url(../../../assets/images/crown.jpg);
+}
+.rccs__card--back .rccs__issuer {
+  background-position: bottom center;
+  bottom: 5%;
+  left: 50%;
+  opacity: 0.6;
+  right: auto;
+  top: auto;
+  transform: translateX(-50%);
+}
+.rccs__card__background {
+  height: 200%;
+  left: -170%;
+  position: absolute;
+  top: -60%;
+  transform: rotate(25deg);
+  transition: all 0.5s ease-out;
+  width: 150%;
+  left: -170%;
+}
+.rccs__card--flipped {
+  transform: rotateY(180deg);
+}
+.rccs__card--flipped .rccs__card--front {
+  z-index: 10;
+}
+.rccs__card--flipped .rccs__card--back {
+  z-index: 20;
+}
+.rccs__card--unknown > div {
+  background: linear-gradient(25deg, #999, #999);
+  box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
+  background-image: url(../../../assets/images/crown.jpg);
+  border-radius: 15px;
+  background-color: rgba(34, 34, 34, 0.351);
+}
+
+.rccs__number {
+  clear: both;
+  font-family: "Consolas", "Courier", monospace;
+  font-size: 25px;
+  left: 20%;
+
+  flex-wrap: wrap;
+  font-weight: 500;
+  position: absolute;
+  top: 45%;
+}
+.rccs__number.rccs__number--large {
+  font-size: 25px;
+}
+.rccs__name {
+  bottom: 15%;
+  font-family: "Consolas", "Courier", monospace;
+  font-size: 20px;
+  left: 10%;
+
+  line-height: 1;
+  overflow: hidden;
+  position: absolute;
+  text-align: left;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  width: 60%;
+}
+.rccs__expiry {
+  bottom: 15%;
+  font-size: 0;
+  line-height: 1;
+  position: absolute;
+  right: 10%;
+  color: black;
+  background-color: white;
+  opacity: 0.8;
+  border-radius: 5px;
+  padding:3px;
+
+}
+.rccs__expiry > * {
+  vertical-align: middle;
+}
+.rccs__expiry__valid {
+  font-size: 10px;
+  margin-bottom: 5px;
+}
+.rccs__expiry__value {
+  font-family: "Consolas", "Courier", monospace;
+  font-size: 16px;
+}
+.rccs__number,
+.rccs__name,
+
+.rccs__cvc {
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.rccs__chip {
+  background-image: url(https://github.com/muhammederdem/vue-interactive-paycard/blob/master/src/assets/images/chip.png?raw=true);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 40.59px;
+  left: 10%;
+  position: absolute;
+  top: 10%;
+  width: 50px;
+}
+.rccs__issuer {
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 23%;
+  position: absolute;
+  right: 10%;
+  top: 10%;
+  width: 40%;
+}
+.rccs__stripe {
+  background-color: #2a1d16;
+  height: 22%;
+  left: 0;
+  position: absolute;
+  top: 9%;
+  width: 100%;
+}
+.rccs__signature {
+  background: repeating-linear-gradient(
+    0.1deg,
+    #fff 20%,
+    #fff 40%,
+    #fea 40%,
+    #fea 44%,
+    #fff 44%
+  );
+  height: 18%;
+  left: 5%;
+  position: absolute;
+  top: 35%;
+  width: 75%;
+}
+.rccs__cvc {
+  color: #222;
+  font-family: "Consolas", "Courier", monospace;
+  font-size: 14px;
+  left: 67%;
+  line-height: 1;
+  position: absolute;
+  top: 42%;
+}
+.rccs__cvc__front {
+  font-family: "Consolas", "Courier", monospace;
+  font-size: 11.9px;
+  opacity: 0;
+  position: absolute;
+  right: 10%;
+  top: 38%;
+  visibility: hidden;
+}
+.rccs--filled {
+  opacity: 0.8 !important;
+}
+.rccs--focused {
+  font-weight: 700;
+  opacity: 1 !important;
+}
