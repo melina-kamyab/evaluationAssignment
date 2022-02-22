@@ -113,6 +113,7 @@ const CreditCardForm = () => {
               required
               placeholder="Name"
               data-testid="name-id"
+              maxLength="60"
               onChange={handleName}
               onFocus={(e) => setFocus(e.target.name)}
               onKeyDown={removeDigits}
