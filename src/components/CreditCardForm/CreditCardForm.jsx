@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './css/creditCardForm.css';
 import './css/creditCard.css';
 import Cards from 'react-credit-cards';
-import {formatCreditCardNumber, formatCVC} from './cardUtils';
+import {addSpace, removeSpecial} from './cardUtils';
 
 const CreditCardForm = () => {
   const [number, setNumber] = useState('');
@@ -11,20 +11,6 @@ const CreditCardForm = () => {
   const [expiry, setExpiry] = useState('');
   const [cvc, setCvc] = useState('');
   const [focus, setFocus] = useState('');
-
-  const removeSpecial = (e) => {
-    let invalidChars = ['-', '+', ' ', '.'];
-    if (invalidChars.includes(e.key)) {
-      e.preventDefault();
-    }
-  };
-
-  const addSpace = (e) => {
-    const {value, id} = e.target;
-    let ele = document.getElementById(id);
-    if (value.length === 4 || value.length === 9 || value.length === 14)
-      ele.value = ele.value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ');
-  };
 
   const handleDate = (e) => {
     setMonth(e.target.value);
@@ -74,7 +60,6 @@ const CreditCardForm = () => {
               onFocus={(e) => setFocus(e.target.name)}
               onKeyDown={removeSpecial}
               onKeyPress={addSpace}
-              format={formatCreditCardNumber}
             />
             <label htmlFor="name">Card Holder</label>
             <input
@@ -129,21 +114,23 @@ const CreditCardForm = () => {
               type="tel"
               name="cvc"
               placeholder="CVC"
+              className="form-control"
               maxlength="3"
               onChange={(e) => {
                 setCvc(e.target.value);
               }}
               onFocus={(e) => setFocus(e.target.name)}
               onKeyDown={removeSpecial}
-              format={formatCVC}
             />
-            <button
-              className="btn btn-primary btn-lg btn-block"
+                      <button
+              className="btn btn-light btn-lg btn-block"
               onClick={submit}
             >
               Submit
             </button>
+ 
           </div>
+
         </form>
       </div>
     </>

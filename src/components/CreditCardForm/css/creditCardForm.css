@@ -1,6 +1,20 @@
 .page-container{
-  background-color: #DBECFC;
   position: relative;
   height: 120vh;
+  padding: 50px;
 }
 
+form{
+  margin-top: 70px;
+  position: absolute;
+  left: 35%;
+  width: 30%;
+}
+
+.form-control{
+  margin-bottom: 10px;
+}
+
+.btn{
+  width: 100%;
+}

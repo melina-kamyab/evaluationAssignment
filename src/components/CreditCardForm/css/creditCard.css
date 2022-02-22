@@ -2,13 +2,13 @@
 /** Images **/
 .rccs {
   margin: 0px auto;
-
   perspective: 1000px;
   z-index: 5;
   position: relative;
   flex-wrap: wrap;
   max-width: 430px;
 }
+
 .rccs__card {
   height: 270px;
   margin: auto;
@@ -26,7 +26,6 @@
   background: linear-gradient(25deg, #939393, #717171);
   border-radius: 14.5px;
   color: #fff;
-
   height: 100%;
   left: 0;
   overflow: hidden;
@@ -34,7 +33,6 @@
   top: 0;
   transform-style: preserve-3d;
   width: 100%;
-
   box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
 }
 
@@ -76,7 +74,7 @@
 }
 .rccs__card--unknown > div {
   background: linear-gradient(25deg, #999, #999);
-  box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
+  box-shadow: 0 30px 60px 0 rgba(59, 65, 72, 0.4);
   background-image: url(../../../assets/images/crown.jpg);
   border-radius: 15px;
   background-color: rgba(34, 34, 34, 0.351);
@@ -101,7 +99,6 @@
   font-family: "Consolas", "Courier", monospace;
   font-size: 20px;
   left: 10%;
-
   line-height: 1;
   overflow: hidden;
   position: absolute;
@@ -136,13 +133,12 @@
 }
 .rccs__number,
 .rccs__name,
-
 .rccs__cvc {
   opacity: 0.5;
   transition: opacity 0.3s;
 }
 .rccs__chip {
-  background-image: url(https://github.com/muhammederdem/vue-interactive-paycard/blob/master/src/assets/images/chip.png?raw=true);
+  background-image: url(../../../assets/images/chip.png);
   background-repeat: no-repeat;
   background-size: contain;
   height: 40.59px;
@@ -202,9 +198,7 @@
   top: 38%;
   visibility: hidden;
 }
-.rccs--filled {
-  opacity: 0.8 !important;
-}
+
 .rccs--focused {
   font-weight: 700;
   opacity: 1 !important;
