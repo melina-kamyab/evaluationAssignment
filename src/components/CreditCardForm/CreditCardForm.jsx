@@ -13,11 +13,18 @@ const CreditCardForm = () => {
   const [cvc, setCvc] = useState('');
   const [focus, setFocus] = useState('');
 
+  const handleCardNumber = (e) => {
+    const input = e.target.value;
+    //const maskedNumber = input.replace(/.(?=\d{3})/g, "#")
+    setNumber(input);
+  };
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
   const handleDate = (e) => {
     setMonth(e.target.value);
     setExpiry(e.target.value);
   };
-
   const handleExpiry = (e) => {
     setExpiry(month.concat(e.target.value));
   };
@@ -56,9 +63,7 @@ const CreditCardForm = () => {
               required
               placeholder="Card Number"
               maxLength="19"
-              onChange={(e) => {
-                setNumber(e.target.value);
-              }}
+              onChange={handleCardNumber}
               onFocus={(e) => setFocus(e.target.name)}
               onKeyDown={removeSpecial}
               onKeyPress={addSpace}
@@ -71,9 +76,7 @@ const CreditCardForm = () => {
               required
               autocomplete
               placeholder="Name"
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+              onChange={handleName}
               onFocus={(e) => setFocus(e.target.name)}
               onKeyDown={removeDigits}
             />
