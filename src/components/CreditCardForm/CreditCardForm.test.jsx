@@ -2,12 +2,10 @@ import React from 'react';
 import {render, screen, fireEvent} from '@testing-library/react';
 import CreditCardForm from './CreditCardForm';
 
-//ÄNDRA CONSTS_NAMN
-
 test('Check for label: Card Number', () => {
   render(<CreditCardForm />);
-  const cleanupMessage = screen.getByText(/Card Number/i);
-  expect(cleanupMessage).toBeInTheDocument();
+  const checkLabel = screen.getByText(/Card Number/i);
+  expect(checkLabel).toBeInTheDocument();
 });
 
 test('Check input value for card number', () => {
@@ -15,8 +13,8 @@ test('Check input value for card number', () => {
   const input = screen.getByTestId('credit-card-number-id');
   fireEvent.change(input, {target: {value: '1234 5678 9123 4567'}});
 
-  const cleanupMessage = screen.getByText(/1234 5678 9123 4567/i);
-  expect(cleanupMessage).toBeInTheDocument();
+  const ckeckCardNumbers = screen.getByText(/1234 5678 9123 4567/i);
+  expect(ckeckCardNumbers).toBeInTheDocument();
 });
 
 test('Check for existing input values', () => {
@@ -26,8 +24,8 @@ test('Check for existing input values', () => {
 
   const name = screen.getByTestId('name-id');
   fireEvent.change(name, {target: {value: 'Melina'}});
-  const cleanupMessage = screen.getByText(/Melina/i);
-  expect(cleanupMessage).toBeInTheDocument();
+  const newValueName = screen.getByText(/Melina/i);
+  expect(newValueName).toBeInTheDocument();
 
   const month = screen.getByTestId('month-id');
   fireEvent.change(month, {target: {value: '01'}});

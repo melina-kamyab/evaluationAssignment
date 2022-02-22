@@ -10,7 +10,7 @@ const CreditCardForm = () => {
   const [name, setName] = useState('');
   const [month, setMonth] = useState('');
   const [expiry, setExpiry] = useState('');
-  const [year, setYear] = useState('')
+  const [year, setYear] = useState('');
   const [cvc, setCvc] = useState('');
   const [focus, setFocus] = useState('');
 
@@ -22,27 +22,51 @@ const CreditCardForm = () => {
   const handleName = (e) => {
     setName(e.target.value);
   };
-  // const handleDate = (e) => {
-  //   setMonth(e.target.value);
-  //   setExpiry(e.target.value);
-  // };
-  // const handleExpiry = (e) => {
-  //   setExpiry(month.concat(e.target.value));
-  // };
+  const handleYear = (e) => {
+    setYear(e.target.value);
+  };
+  const handleMonth = (e) => {
+    setMonth(e.target.value);
+  };
 
   const submit = () => {
     setNumber('');
     setName('');
     setExpiry('');
+    setMonth('');
+    setYear('');
     setCvc('');
     setFocus('');
   };
 
-  React.useEffect (()=>{
-      setExpiry(month.concat(year))
-  }, [year, month]) 
+  React.useEffect(() => {
+    setExpiry(month.concat(year));
+  }, [year, month]);
 
-
+  const yearsArr = [
+    {year: 2022, value: '22'},
+    {year: 2023, value: '23'},
+    {year: 2024, value: '24'},
+    {year: 2025, value: '25'},
+    {year: 2026, value: '26'},
+    {year: 2027, value: '27'},
+    {year: 2028, value: '28'},
+    {year: 2029, value: '29'},
+    {year: 2030, value: '30'},
+  ];
+  const monthsArr = [
+    {month: 'January', value: '01'},
+    {month: 'February', value: '02'},
+    {month: 'March', value: '03'},
+    {month: 'April', value: '04'},
+    {month: 'May', value: '05'},
+    {month: 'June', value: '06'},
+    {month: 'July', value: '07'},
+    {month: 'August', value: '08'},
+    {month: 'September', value: '10'},
+    {month: 'November', value: '11'},
+    {month: 'December', value: '12'},
+  ];
   return (
     <>
       <div className="page-container">
@@ -92,42 +116,32 @@ const CreditCardForm = () => {
               className="form-control"
               name="expiry-month"
               data-testid="month-id"
-              onChange={(e)=> setMonth(e.target.value)}
+              onChange={handleMonth}
               value={month}
-              required
-            >
+              required>
               <option value=" ">Month</option>
-              <option value="01">Jan</option>
-              <option value="02">Feb</option>
-              <option value="03">Mar</option>
-              <option value="04">April</option>
-              <option value="05">May</option>
-              <option value="06">June</option>
-              <option value="07">July</option>
-              <option value="08">Aug</option>
-              <option value="09">Sep</option>
-              <option value="10">Oct</option>
-              <option value="11">Nov</option>
-              <option value="12">Dec</option>
+              {monthsArr.map((month) => {
+                return (
+                  <option value={month.value} key={Math.random()}>
+                    {month.month}
+                  </option>
+                );
+              })}
             </select>
-
             <select
               className="form-control"
               name="expiry-year"
               data-testid="year-id"
-              onChange={(e)=>setYear(e.target.value)}
-              value={year}
-            >
+              onChange={handleYear}
+              value={year} >
               <option value=" ">Year</option>
-              <option value="22">2022</option>
-              <option value="23">2023</option>
-              <option value="24">2024</option>
-              <option value="25">2025</option>
-              <option value="26">2026</option>
-              <option value="27">2027</option>
-              <option value="28">2028</option>
-              <option value="29">2029</option>
-              <option value="30">2030</option>
+              {yearsArr.map((year) => {
+                return (
+                  <option value={year.value} key={Math.random()}>
+                    {year.year}
+                  </option>
+                );
+              })}
             </select>
             <label htmlFor="cvc">CVC</label>
             <input
