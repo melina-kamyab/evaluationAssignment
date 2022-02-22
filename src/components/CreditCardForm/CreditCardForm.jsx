@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import {useForm} from 'react-hook-form';
 import './css/creditCardForm.css';
 import './css/creditCard.css';
 import Cards from 'react-credit-cards';
-import {addSpace, removeSpecial} from './cardUtils';
+import {addSpace, removeSpecial, removeDigits} from './cardUtils';
 
 const CreditCardForm = () => {
   const [number, setNumber] = useState('');
@@ -52,8 +53,9 @@ const CreditCardForm = () => {
               name="number"
               className="form-control"
               id="cardNumber"
+              required
               placeholder="Card Number"
-              maxlength="19"
+              maxLength="19"
               onChange={(e) => {
                 setNumber(e.target.value);
               }}
@@ -66,17 +68,21 @@ const CreditCardForm = () => {
               type="text"
               name="name"
               className="form-control"
+              required
+              autocomplete
               placeholder="Name"
               onChange={(e) => {
                 setName(e.target.value);
               }}
               onFocus={(e) => setFocus(e.target.name)}
+              onKeyDown={removeDigits}
             />
             <label htmlFor="month">Expiration Date</label>
             <select
               className="form-control"
               name="expiry"
               onChange={handleDate}
+              required
             >
               <option value=" ">Month</option>
               <option value="01">Jan</option>
@@ -115,22 +121,22 @@ const CreditCardForm = () => {
               name="cvc"
               placeholder="CVC"
               className="form-control"
-              maxlength="3"
+              required
+              maxLength="3"
               onChange={(e) => {
                 setCvc(e.target.value);
               }}
               onFocus={(e) => setFocus(e.target.name)}
               onKeyDown={removeSpecial}
             />
-                      <button
-              className="btn btn-light btn-lg btn-block"
+            <button
+              className="btn btn-dark btn-lg btn-block"
               onClick={submit}
+              disabled={!month || !expiry}
             >
               Submit
             </button>
- 
           </div>
-
         </form>
       </div>
     </>
