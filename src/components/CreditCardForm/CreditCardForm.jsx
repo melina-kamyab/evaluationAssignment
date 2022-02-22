@@ -10,6 +10,7 @@ const CreditCardForm = () => {
   const [name, setName] = useState('');
   const [month, setMonth] = useState('');
   const [expiry, setExpiry] = useState('');
+  const [year, setYear] = useState('')
   const [cvc, setCvc] = useState('');
   const [focus, setFocus] = useState('');
 
@@ -21,21 +22,26 @@ const CreditCardForm = () => {
   const handleName = (e) => {
     setName(e.target.value);
   };
-  const handleDate = (e) => {
-    setMonth(e.target.value);
-    setExpiry(e.target.value);
-  };
-  const handleExpiry = (e) => {
-    setExpiry(month.concat(e.target.value));
-  };
+  // const handleDate = (e) => {
+  //   setMonth(e.target.value);
+  //   setExpiry(e.target.value);
+  // };
+  // const handleExpiry = (e) => {
+  //   setExpiry(month.concat(e.target.value));
+  // };
 
-  const submit = (e) => {
+  const submit = () => {
     setNumber('');
     setName('');
     setExpiry('');
     setCvc('');
     setFocus('');
   };
+
+  React.useEffect (()=>{
+      setExpiry(month.concat(year))
+  }, [year, month]) 
+
 
   return (
     <>
@@ -62,6 +68,7 @@ const CreditCardForm = () => {
               id="cardNumber"
               required
               placeholder="Card Number"
+              data-testid="credit-card-number-id"
               maxLength="19"
               onChange={handleCardNumber}
               onFocus={(e) => setFocus(e.target.name)}
@@ -74,8 +81,8 @@ const CreditCardForm = () => {
               name="name"
               className="form-control"
               required
-              autocomplete
               placeholder="Name"
+              data-testid="name-id"
               onChange={handleName}
               onFocus={(e) => setFocus(e.target.name)}
               onKeyDown={removeDigits}
@@ -83,8 +90,10 @@ const CreditCardForm = () => {
             <label htmlFor="month">Expiration Date</label>
             <select
               className="form-control"
-              name="expiry"
-              onChange={handleDate}
+              name="expiry-month"
+              data-testid="month-id"
+              onChange={(e)=> setMonth(e.target.value)}
+              value={month}
               required
             >
               <option value=" ">Month</option>
@@ -104,8 +113,10 @@ const CreditCardForm = () => {
 
             <select
               className="form-control"
-              name="expiry"
-              onChange={handleExpiry}
+              name="expiry-year"
+              data-testid="year-id"
+              onChange={(e)=>setYear(e.target.value)}
+              value={year}
             >
               <option value=" ">Year</option>
               <option value="22">2022</option>
@@ -122,6 +133,7 @@ const CreditCardForm = () => {
             <input
               type="tel"
               name="cvc"
+              data-testid="cvc-id"
               placeholder="CVC"
               className="form-control"
               required
@@ -134,8 +146,9 @@ const CreditCardForm = () => {
             />
             <button
               className="btn btn-dark btn-lg btn-block"
+              data-testid="button-id"
               onClick={submit}
-              disabled={!month || !expiry}
+              disabled={!year || !month || !name || !cvc || !number}
             >
               Submit
             </button>

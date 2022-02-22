@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders cleanup react app message', () => {
-  const { getByText } = render(<App />);
-  const cleanupMessage = getByText(/Cleanedup React App/i);
+test('Check for label Card Number', () => {
+  render(<App />);
+  const cleanupMessage = screen.getByText(/Card Number/i);
   expect(cleanupMessage).toBeInTheDocument();
 });
